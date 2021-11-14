@@ -1,5 +1,14 @@
+<%= if @has_prev do %><%= link "<< prev", to: Routes.page_path(@conn, :index, page: @prev_page) %><% else %>&lt;&lt; prev<% end %>
+<%= @page %>
+<%= if @has_next do %><%= link "next >>", to: Routes.page_path(@conn, :index, page: @next_page) %><% else %>next &gt;&gt;<% end %>
+
+
 <%= for image <- @images do %>
     <div class="image">
       <%= img_tag("https://d2f33fmhbh7cs9.cloudfront.net/image/#{image.ahash}/1000w/#{image.id}#{image.ext}") %>
     </div>
 <% end %>
+
+<%= if @has_prev do %><%= link "<< prev", to: Routes.page_path(@conn, :index, page: @prev_page) %><% else %>&lt;&lt; prev<% end %>
+<%= @page %>
+<%= if @has_next do %><%= link "next >>", to: Routes.page_path(@conn, :index, page: @next_page) %><% else %>next &gt;&gt;<% end %>
