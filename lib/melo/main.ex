@@ -22,6 +22,16 @@ defmodule Melo.Main do
     Repo.get!(Image, id) |> Repo.preload(:tags)
   end
 
+  def get_random_image!() do
+    count = count_images()
+    idx = Enum.random(0..count)
+    q = from i in Image,
+      where: i.ahash != "",
+      offset: ^idx,
+      limit: 1
+    Repo.one!(q) |> Repo.preload(:tags)
+  end
+
   def get_tag!(slug) do
     Repo.get_by!(Tag, slug: slug) |> Repo.preload(:images)
   end

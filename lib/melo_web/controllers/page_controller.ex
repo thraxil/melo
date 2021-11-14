@@ -28,4 +28,9 @@ defmodule MeloWeb.PageController do
     tag = Melo.Main.get_tag!(slug)
     render conn, "tag.html", tag: tag
   end
+
+  def random(conn, _params) do
+    image = Melo.Main.get_random_image!()
+    render conn, "image.html", image: image
+  end
 end
