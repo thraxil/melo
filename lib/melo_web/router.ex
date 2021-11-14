@@ -22,8 +22,12 @@ defmodule MeloWeb.Router do
     get "/tag", PageController, :tags
     get "/tag/:slug", PageController, :tag
     get "/random", PageController, :random
+
+    get "/feeds/newest", FeedController, :index
   end
 
+
+  
   # Other scopes may use custom stacks.
   # scope "/api", MeloWeb do
   #   pipe_through :api
