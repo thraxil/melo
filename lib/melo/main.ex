@@ -23,6 +23,6 @@ defmodule Melo.Main do
   end
 
   def get_tag!(slug) do
-    Repo.get_by!(Tag, slug: slug)
+    Repo.get_by!(Tag, slug: slug) |> Repo.preload(:images)
   end
 end

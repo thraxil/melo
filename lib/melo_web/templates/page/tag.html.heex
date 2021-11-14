@@ -1,1 +1,7 @@
 <h2>Tag: <%= @tag.tag %></h2>
+
+<%= for image <- @tag.images do %>
+    <%= link to: Routes.page_path(@conn, :image, image.id) do %>
+    <%= img_tag("https://d2f33fmhbh7cs9.cloudfront.net/image/#{image.ahash}/100s/#{image.id}#{image.ext}", height: 100, width: 100) %>
+    <% end %>
+<% end %>
