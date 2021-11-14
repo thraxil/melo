@@ -18,6 +18,7 @@ defmodule MeloWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/image/:id", PageController, :image
   end
 
   # Other scopes may use custom stacks.

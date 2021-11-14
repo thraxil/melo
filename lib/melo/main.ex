@@ -17,4 +17,8 @@ defmodule Melo.Main do
       where: i.ahash != ""
     Repo.aggregate(q, :count, :id)
   end
+
+  def get_image!(id) do
+    Repo.get!(Image, id)
+  end
 end

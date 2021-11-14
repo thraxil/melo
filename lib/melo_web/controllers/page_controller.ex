@@ -18,4 +18,9 @@ defmodule MeloWeb.PageController do
       next_page: page + 1,
       has_next: has_next
   end
+
+  def image(conn, %{"id" => id}) do
+    image = Melo.Main.get_image!(id)
+    render conn, "image.html", image: image
+  end
 end
