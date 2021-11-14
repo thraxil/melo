@@ -16,7 +16,7 @@ if config_env() == :prod do
 
   config :melo, Melo.Repo,
     # ssl: true,
-    # socket_options: [:inet6],
+    socket_options: [:inet6],
     url: database_url,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
@@ -32,6 +32,10 @@ if config_env() == :prod do
       You can generate one by calling: mix phx.gen.secret
       """
 
+  app_name =
+    System.get_env("FLY_APP_NAME") ||
+    raise "FLY_APP_NAME not available"
+  
   config :melo, MeloWeb.Endpoint,
     http: [
       # Enable IPv6 and bind on all interfaces.
@@ -48,7 +52,7 @@ if config_env() == :prod do
   # If you are doing OTP releases, you need to instruct Phoenix
   # to start each relevant endpoint:
   #
-  #     config :melo, MeloWeb.Endpoint, server: true
+  config :melo, MeloWeb.Endpoint, server: true
   #
   # Then you can assemble a release by calling `mix release`.
   # See `mix help release` for more information.

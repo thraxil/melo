@@ -4,7 +4,6 @@ defmodule MeloWeb.PageController do
   def index(conn, _params) do
     defaults = %{ "page" => "1" }
     params = Map.merge(defaults, conn.query_params)
-    IO.inspect(params)
     {page, _} = Integer.parse(params["page"])
     images_count = Melo.Main.count_images()
     max_page = (div images_count, 20) + 1
