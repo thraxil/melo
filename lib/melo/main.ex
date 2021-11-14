@@ -21,4 +21,8 @@ defmodule Melo.Main do
   def get_image!(id) do
     Repo.get!(Image, id) |> Repo.preload(:tags)
   end
+
+  def get_tag!(slug) do
+    Repo.get_by!(Tag, slug: slug)
+  end
 end

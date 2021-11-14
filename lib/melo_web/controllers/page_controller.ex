@@ -25,5 +25,7 @@ defmodule MeloWeb.PageController do
   end
 
   def tag(conn, %{"slug" => slug}) do
+    tag = Melo.Main.get_tag!(slug)
+    render conn, "tag.html", tag: tag
   end
 end
