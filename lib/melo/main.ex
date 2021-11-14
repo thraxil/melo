@@ -35,4 +35,10 @@ defmodule Melo.Main do
   def get_tag!(slug) do
     Repo.get_by!(Tag, slug: slug) |> Repo.preload(:images)
   end
+
+  def all_tags() do
+    q = from t in Tag,
+      order_by: t.tag
+    Repo.all(q)
+  end
 end

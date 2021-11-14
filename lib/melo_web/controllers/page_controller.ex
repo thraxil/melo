@@ -29,6 +29,11 @@ defmodule MeloWeb.PageController do
     render conn, "tag.html", tag: tag
   end
 
+  def tags(conn, _params) do
+    tags = Melo.Main.all_tags()
+    render conn, "tags.html", tags: tags
+  end
+
   def random(conn, _params) do
     image = Melo.Main.get_random_image!()
     render conn, "image.html", image: image

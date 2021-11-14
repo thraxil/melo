@@ -19,6 +19,7 @@ defmodule MeloWeb.Router do
 
     get "/", PageController, :index
     get "/image/:id", PageController, :image
+    get "/tag", PageController, :tags
     get "/tag/:slug", PageController, :tag
     get "/random", PageController, :random
   end
