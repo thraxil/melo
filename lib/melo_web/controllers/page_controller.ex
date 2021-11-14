@@ -23,4 +23,7 @@ defmodule MeloWeb.PageController do
     image = Melo.Main.get_image!(id)
     render conn, "image.html", image: image
   end
+
+  def tag(conn, %{"slug" => slug}) do
+  end
 end

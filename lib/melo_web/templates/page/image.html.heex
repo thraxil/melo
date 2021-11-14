@@ -2,6 +2,6 @@
 
 <ul>
 <%= for tag <- @image.tags do %>
-<li><%= tag.tag %></li>
+<li><%= link tag.tag, to: Routes.page_path(@conn, :tag, tag.slug) %></li>
 <% end %>
 </ul>

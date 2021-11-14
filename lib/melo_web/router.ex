@@ -19,6 +19,7 @@ defmodule MeloWeb.Router do
 
     get "/", PageController, :index
     get "/image/:id", PageController, :image
+    get "/tag/:slug", PageController, :tag
   end
 
   # Other scopes may use custom stacks.
