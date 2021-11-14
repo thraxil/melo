@@ -1,7 +1,5 @@
-
-<section class="row">
-  <article class="column">
-  </article>
-  <article class="column">
-  </article>
-</section>
+<%= for image <- @images do %>
+    <div class="image">
+      <%= img_tag("https://d2f33fmhbh7cs9.cloudfront.net/image/#{image.ahash}/1000w/#{image.id}#{image.ext}") %>
+    </div>
+<% end %>
