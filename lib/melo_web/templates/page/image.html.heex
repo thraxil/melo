@@ -1,1 +1,7 @@
 <%= img_tag("https://d2f33fmhbh7cs9.cloudfront.net/image/#{@image.ahash}/1000w/#{@image.id}#{@image.ext}") %>
+
+<ul>
+<%= for tag <- @image.tags do %>
+<li><%= tag.tag %></li>
+<% end %>
+</ul>

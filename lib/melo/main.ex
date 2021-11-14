@@ -19,6 +19,6 @@ defmodule Melo.Main do
   end
 
   def get_image!(id) do
-    Repo.get!(Image, id)
+    Repo.get!(Image, id) |> Repo.preload(:tags)
   end
 end
