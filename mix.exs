@@ -20,7 +20,7 @@ defmodule Melo.MixProject do
   def application do
     [
       mod: {Melo.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:httpoison, :ueberauth, :ueberauth_auth0, :logger, :runtime_tools]
     ]
   end
 
@@ -49,6 +49,9 @@ defmodule Melo.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:timex, "~> 3.5"},
+      {:httpoison, "~> 1.8.0"},
+      {:ueberauth, "~> 0.7.0"},
+      {:ueberauth_auth0, "~> 2.0.0"},
       {:plug_cowboy, "~> 2.5"}
     ]
   end

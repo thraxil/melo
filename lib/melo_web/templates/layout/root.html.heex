@@ -17,6 +17,13 @@
             <li><%= link "index", to: Routes.page_path(@conn, :index) %></li>
             <li><%= link "tags", to: Routes.page_path(@conn, :tags) %></li>
             <li><%= link "random", to: Routes.page_path(@conn, :random) %></li>
+            <%= if @current_user do %>
+            <li><%= @current_user.name %></li>
+            <li><%= link "admin", to: Routes.admin_path(@conn, :index) %></li>
+            <li class="active"><a href="/logout">logout</a></li>
+            <% else %>
+            <li><a href="/auth/auth0">login</a></li>
+            <% end %>
           </ul>
         </nav>
       </section>

@@ -1,5 +1,6 @@
 defmodule MeloWeb.Router do
   use MeloWeb, :router
+  require Ueberauth
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -14,6 +15,14 @@ defmodule MeloWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/auth", MeloWeb do
+    pipe_through :browser
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+    post "/:provider/callback", AuthController, :callback
+  end
+
   scope "/", MeloWeb do
     pipe_through :browser
 
@@ -24,8 +33,10 @@ defmodule MeloWeb.Router do
     get "/random", PageController, :random
 
     get "/feeds/newest", FeedController, :index
-  end
+    get "/logout", AuthController, :logout
 
+    get "/admin", AdminController, :index
+  end
 
   
   # Other scopes may use custom stacks.

@@ -35,6 +35,12 @@ if config_env() == :prod do
   app_name =
     System.get_env("FLY_APP_NAME") ||
     raise "FLY_APP_NAME not available"
+
+  # Configures Ueberauth's Auth0 auth provider
+  config :ueberauth, Ueberauth.Strategy.Auth0.OAuth,
+    domain: System.get_env("AUTH0_DOMAIN"),
+    client_id: System.get_env("AUTH0_CLIENT_ID"),
+    client_secret: System.get_env("AUTH0_CLIENT_SECRET")
   
   config :melo, MeloWeb.Endpoint,
     http: [
