@@ -1,4 +1,13 @@
-on: push
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
 jobs:
   dependencies:
@@ -70,3 +79,14 @@ jobs:
             _build
           key: ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ hashFiles('mix.lock') }}
       - run: mix test --trace --slowest 10
+  deploy:
+      name: Deploy app
+      needs:
+        - mix-test
+      if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && needs.mix-test.result == 'success'
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: superfly/flyctl-actions@1.1
+          with:
+            args: "deploy"
