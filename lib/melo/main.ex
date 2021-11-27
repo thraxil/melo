@@ -24,7 +24,7 @@ defmodule Melo.Main do
 
   def get_random_image!() do
     count = count_images()
-    idx = Enum.random(0..count)
+    idx = Enum.random(0..count - 1)
     q = from i in Image,
       where: i.ahash != "",
       offset: ^idx,
@@ -40,5 +40,16 @@ defmodule Melo.Main do
     q = from t in Tag,
       order_by: t.tag
     Repo.all(q)
+  end
+
+  def create_image(attrs \\ %{}) do
+    %Image{}
+    |> Image.changeset(attrs)
+    |> Repo.insert()
+  end
+  def create_tag(attrs \\ %{}) do
+    %Tag{}
+    |> Tag.changeset(attrs)
+    |> Repo.insert()
   end
 end
