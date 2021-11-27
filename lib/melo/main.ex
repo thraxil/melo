@@ -5,7 +5,6 @@ defmodule Melo.Main do
 
   def newest_images(page \\ 1) do
     q = from i in Image,
-      where: i.ahash != "",
       order_by: [desc: :inserted_at],
       limit: 20,
       offset: ^((page - 1) * 20)
@@ -13,9 +12,7 @@ defmodule Melo.Main do
   end
 
   def count_images() do
-    q = from i in Image,
-      where: i.ahash != ""
-    Repo.aggregate(q, :count, :id)
+    Repo.aggregate(Image, :count, :id)
   end
 
   def get_image!(id) do
@@ -26,7 +23,6 @@ defmodule Melo.Main do
     count = count_images()
     idx = Enum.random(0..count - 1)
     q = from i in Image,
-      where: i.ahash != "",
       offset: ^idx,
       limit: 1
     Repo.one!(q) |> Repo.preload(:tags)
