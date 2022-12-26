@@ -2,7 +2,6 @@ defmodule Melo.MainTest do
   use Melo.DataCase
 
   alias Melo.Main
-  import Melo.MainFixtures
 
   describe "main" do
     @valid_image_attrs %{ahash: "asdfasdfasdf", ext: ".jpg", url: "https://example.com/"}
