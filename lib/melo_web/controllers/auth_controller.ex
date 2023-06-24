@@ -1,24 +1,9 @@
 defmodule MeloWeb.AuthController do
   use MeloWeb, :controller
-  alias MeloWeb.Router.Helpers
 
   plug(Ueberauth)
 
-  alias Ueberauth.Strategy.Helpers
   alias MeloWeb.UserFromAuth
-
-  defp auth0_logout() do
-    # TODO: implement this. needs to figure out correct logout url for returnTu
-    "https:" <> System.get_env("AUTH0_DOMAIN") <> "/v2/logout?client_id=YOUR_CLIENT_ID&returnTo=LOGOUT_URL"
-  end
-  
-  def logout(conn, _params) do
-    conn
-    |> put_flash(:info, "You have been logged out!")
-    |> configure_session(drop: true)
-#   |> redirect(to: auth0_logout())
-    |> redirect(to: "/")
-  end
 
   def callback(%{assigns: %{ueberauth_failure: _fails}} = conn, _params) do
     conn
