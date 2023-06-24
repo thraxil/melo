@@ -1,13 +1,15 @@
 defmodule Melo.Main do
   import Ecto.Query, warn: false
   alias Melo.Repo
-  alias Melo.Main.{Image,Tag}
+  alias Melo.Main.{Image, Tag}
 
   def newest_images(page \\ 1) do
-    q = from i in Image,
-      order_by: [desc: :inserted_at],
-      limit: 20,
-      offset: ^((page - 1) * 20)
+    q =
+      from i in Image,
+        order_by: [desc: :inserted_at],
+        limit: 20,
+        offset: ^((page - 1) * 20)
+
     Repo.all(q)
   end
 
@@ -21,10 +23,13 @@ defmodule Melo.Main do
 
   def get_random_image!() do
     count = count_images()
-    idx = Enum.random(0..count - 1)
-    q = from i in Image,
-      offset: ^idx,
-      limit: 1
+    idx = Enum.random(0..(count - 1))
+
+    q =
+      from i in Image,
+        offset: ^idx,
+        limit: 1
+
     Repo.one!(q) |> Repo.preload(:tags)
   end
 
@@ -33,8 +38,10 @@ defmodule Melo.Main do
   end
 
   def all_tags() do
-    q = from t in Tag,
-      order_by: t.tag
+    q =
+      from t in Tag,
+        order_by: t.tag
+
     Repo.all(q)
   end
 
@@ -43,6 +50,7 @@ defmodule Melo.Main do
     |> Image.changeset(attrs)
     |> Repo.insert()
   end
+
   def create_tag(attrs \\ %{}) do
     %Tag{}
     |> Tag.changeset(attrs)

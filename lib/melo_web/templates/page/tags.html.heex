@@ -1,5 +1,5 @@
 <ul>
-<%= for tag <- @tags do %>
-<li><%= link tag.tag, to: Routes.page_path(@conn, :tag, tag.slug) %></li>
-<% end %>
+  <%= for tag <- @tags do %>
+    <li><%= link(tag.tag, to: Routes.page_path(@conn, :tag, tag.slug)) %></li>
+  <% end %>
 </ul>

@@ -38,7 +38,6 @@ defmodule MeloWeb.Router do
     get "/admin", AdminController, :index
   end
 
-  
   # Other scopes may use custom stacks.
   # scope "/api", MeloWeb do
   #   pipe_through :api

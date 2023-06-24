@@ -7,7 +7,7 @@ defmodule Melo.Main.Tag do
     field :tag, :string
 
     many_to_many :images, Melo.Main.Image, join_through: "image_tags"
-    
+
     timestamps()
   end
 

@@ -1,7 +1,9 @@
-<%= img_tag("https://d2f33fmhbh7cs9.cloudfront.net/image/#{@image.ahash}/1000w/#{@image.id}#{@image.ext}") %>
+<%= img_tag(
+  "https://d2f33fmhbh7cs9.cloudfront.net/image/#{@image.ahash}/1000w/#{@image.id}#{@image.ext}"
+) %>
 
 <ul>
-<%= for tag <- @image.tags do %>
-<li><%= link tag.tag, to: Routes.page_path(@conn, :tag, tag.slug) %></li>
-<% end %>
+  <%= for tag <- @image.tags do %>
+    <li><%= link(tag.tag, to: Routes.page_path(@conn, :tag, tag.slug)) %></li>
+  <% end %>
 </ul>

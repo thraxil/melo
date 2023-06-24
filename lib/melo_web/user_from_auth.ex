@@ -10,8 +10,8 @@ defmodule MeloWeb.UserFromAuth do
   def find_or_create(%Auth{provider: :identity} = auth) do
     case validate_pass(auth.credentials) do
       :ok ->
-#        IO.puts("validated")
-#        IO.inspect(auth)
+        #        IO.puts("validated")
+        #        IO.inspect(auth)
         {:ok, basic_info(auth)}
 
       {:error, reason} ->
@@ -20,8 +20,8 @@ defmodule MeloWeb.UserFromAuth do
   end
 
   def find_or_create(%Auth{} = auth) do
-#    IO.puts("find_or_create")
-#    IO.inspect(auth)
+    #    IO.puts("find_or_create")
+    #    IO.inspect(auth)
     {:ok, basic_info(auth)}
   end
 

@@ -9,9 +9,15 @@ defmodule Melo.Repo.Migrations.RemoveNullAhashes do
     from(i in Image, where: i.ahash == "")
     |> Repo.all()
     |> Enum.each(fn image ->
-      Repo.delete_all(from r in "image_tags", where: r.image_id == ^image.id, select: [r.id, r.image_id, r.tag_id])
+      Repo.delete_all(
+        from(r in "image_tags",
+          where: r.image_id == ^image.id,
+          select: [r.id, r.image_id, r.tag_id]
+        )
+      )
     end)
+
     # then the images themselves
-    from(i in Image, where: i.ahash == "") |> Repo.delete_all
+    from(i in Image, where: i.ahash == "") |> Repo.delete_all()
   end
 end

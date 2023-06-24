@@ -6,12 +6,13 @@ defmodule Melo.MainTest do
   describe "main" do
     @valid_image_attrs %{ahash: "asdfasdfasdf", ext: ".jpg", url: "https://example.com/"}
     @valid_tag_attrs %{slug: "tag", tag: "Tag"}
-    
+
     def image_fixture(attrs \\ %{}) do
       {:ok, image} =
         attrs
         |> Enum.into(@valid_image_attrs)
         |> Main.create_image()
+
       image
     end
 
@@ -20,6 +21,7 @@ defmodule Melo.MainTest do
         attrs
         |> Enum.into(@valid_tag_attrs)
         |> Main.create_tag()
+
       tag
     end
 
@@ -37,7 +39,7 @@ defmodule Melo.MainTest do
       # add some more and make sure the count changes
       _i2 = image_fixture()
       _i3 = image_fixture()
-      assert Main.count_images() == 3      
+      assert Main.count_images() == 3
     end
 
     test "get_image!/1 returns a known image" do
