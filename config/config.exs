@@ -59,3 +59,13 @@ config :ueberauth, Ueberauth.Strategy.Auth0.OAuth,
   domain: System.get_env("AUTH0_DOMAIN"),
   client_id: System.get_env("AUTH0_CLIENT_ID"),
   client_secret: System.get_env("AUTH0_CLIENT_SECRET")
+
+config :sentry,
+  dsn: System.get_env("SENTRY_DSN"),
+  environment_name: Mix.env(),
+  enable_source_code_context: true,
+  root_source_code_paths: [File.cwd!()],
+  tags: %{
+    env: "production"
+  },
+  included_environments: [:prod]

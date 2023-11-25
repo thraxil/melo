@@ -53,7 +53,7 @@ defmodule Melo.MixProject do
       {:httpoison, "~> 2.2.0"},
       {:ueberauth, "~> 0.10.3"},
       {:ueberauth_auth0, "~> 2.1.0"},
-      {:sentry, "~> 8.0"},
+      {:sentry, "~> 9.1"},
       {:hackney, "~> 1.8"},
       {:plug_cowboy, "~> 2.5"}
     ]
